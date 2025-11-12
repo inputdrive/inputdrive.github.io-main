@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InputDrive via Github Pages</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <h1>Hello World!</h1>
+    <h2>Wow this is easy.</h2>
+    <h3>How about some html and javascript pages: </h3>
+    <h4>Click on the links below to navigate to different pages:</h4><br>
+    <a href="/random.html">Go to Random page</a><br>
+    <a href="/mortgage_calculator.html">Go to Mortgage Calculator</a><br>
+    <a href="/mortgage_calculator_advanced.html">Go to Mortgage Calculator Advanced</a><br>
+    <a href="/parsing_api.html">Go to Parsing API</a><br>
+    <p>This is a simple HTML page with some CSS styling.</p>
+    <p>This site is hosted with GitHub Pages.</p><br>
+    <p>consider using sdnjs.com <a href="https://cdnjs.com/">"ultra-fast, reliable, globally available content delivery network for open-source libraries"</a></p>
+    <p id="demo"></p>
+    <script>
+        const date = new Date(document.lastModified);
+        document.getElementById("demo").innerHTML = date;
+        // Fetch IP information using an API
+        fetch('https://ipapi.co/json/')
+            .then(response => response.json())
+            .then(data => {
+                const region = data.region;
+                const ipAddress = data.ip;
+                document.getElementById("demo").innerHTML += `<p>Your browser Region: ${region}</p>`;
+                document.getElementById("demo").innerHTML += `<p>Your browser IP Address: ${ipAddress}</p>`;
+                const isJavascriptBlocked = !document.getElementById("demo");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    </script>
+    <script>
+        const lastModified = new Date(document.lastModified);
+        document.getElementById("lastModified").innerHTML = "Page last edited: " + lastModified;
+    </script>
+</body>
+</html>

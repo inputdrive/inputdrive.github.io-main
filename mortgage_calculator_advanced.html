@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Calculator Advanced</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script>
+        function calculateLoan() {
+            var loanAmount = parseFloat(document.getElementById("loanAmount").value);
+            var interestRate = parseFloat(document.getElementById("interestRate").value);
+            var periodYears = parseFloat(document.getElementById("periodYears").value);
+            var additionalPayment = parseFloat(document.getElementById("additionalPayment").value);
+
+            var monthlyInterestRate = interestRate / 100 / 12;
+            var totalMonths = periodYears * 12;
+
+            var monthlyPayment = (loanAmount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -totalMonths));
+            var totalPayment = monthlyPayment * totalMonths;
+            var totalSavings = (monthlyPayment + additionalPayment) * totalMonths - loanAmount;
+
+            var result = "Loan Amount: $" + loanAmount.toFixed(2) + "<br>";
+            result += "Interest Rate: " + interestRate.toFixed(2) + "%<br>";
+            result += "Loan Period: " + periodYears.toFixed(2) + " years<br>";
+            result += "Additional Payment: $" + additionalPayment.toFixed(2) + "<br>";
+            result += "Monthly Payment: $" + monthlyPayment.toFixed(2) + "<br>";
+            result += "Total Payment: $" + totalPayment.toFixed(2) + "<br>";
+            result += "Total Savings: $" + totalSavings.toFixed(2) + "<br>";
+
+            document.getElementById("result").innerHTML = result;
+        }
+    </script>
+</head>
+<body>
+    <h1>Mortgage Calculator Advanced</h1>
+    <label for="loanAmount">Loan Amount:</label>
+    <input type="number" id="loanAmount"><br>
+    <label for="interestRate">Interest Rate (%):</label>
+    <input type="number" id="interestRate"><br>
+    <label for="periodYears">Loan Period (in years):</label>
+    <input type="number" id="periodYears"><br>
+    <label for="additionalPayment">Additional Payment (optional):</label>
+    <input type="number" id="additionalPayment"><br>
+    <button onclick="calculateLoan()">Calculate</button>
+    <div id="result"></div>
+    <button onclick="window.print()">Print</button>
+    <p id="lastModified"></p>
+    <script>
+        const lastModified = new Date(document.lastModified);
+        document.getElementById("lastModified").innerHTML = "Page last edited: " + lastModified;
+    </script>
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="inputdrive22" data-color="#5F7FFF" data-emoji="😉"  data-font="Bree" data-text="Buy me a coffee OR tea?" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script><br>
+    <a href="/index.html">Go to Home page</a><br>
+</body>
+</html>

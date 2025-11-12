@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP API Data Parser</title>
+    <link rel="stylesheet" href="stylesheet.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>IP API Data Parser</h1>
+    <div id="data"></div>
+    <script>
+        $(document).ready(function() {
+            $.getJSON("https://ipapi.co/json/", function(data) {
+                var output = "<h2>Your Browser States</h2>";
+                output += "<p>Data: " + JSON.stringify(data, null, 2) + "</p>";
+                $("#data").html(output);
+                $("#data").css("text-align", "center");
+                var latitude = data.latitude;
+                var longitude = data.longitude;
+                initMap(latitude, longitude);
+            });
+        });
+    </script>
+    <p id="lastModified"></p>
+    <script>
+        const lastModified = new Date(document.lastModified);
+        document.getElementById("lastModified").innerHTML = "Page last edited: " + lastModified;
+    </script>
+    <div id="map"></div><br>
+    <a href="/index.html">Go to Home page</a><br>
+</body>
+</html>

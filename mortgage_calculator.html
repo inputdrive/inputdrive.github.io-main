@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Calculator</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    
+    <script>
+        /**
+         * Calculates the mortgage based on user input.
+         */
+        function calculateMortgage() {
+            // Get user input
+            var loanAmount = parseFloat(document.getElementById('loanAmount').value);
+            var interestRate = parseFloat(document.getElementById('interestRate').value);
+            var loanTerm = parseFloat(document.getElementById('loanTerm').value);
+
+            // Calculate mortgage return
+            var monthlyInterestRate = interestRate / 100 / 12;
+            var numberOfPayments = loanTerm * 12;
+            var monthlyPayment = (loanAmount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -numberOfPayments));
+            var totalPayment = monthlyPayment * numberOfPayments;
+            var totalInterest = totalPayment - loanAmount;
+
+            // Display the result
+            document.getElementById('monthlyPayment').innerHTML = monthlyPayment.toFixed(2);
+            document.getElementById('totalPayment').innerHTML = totalPayment.toFixed(2);
+            document.getElementById('totalInterest').innerHTML = totalInterest.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <h1>Mortgage Calculator</h1>
+    <p>All calculations are performed on the user's browser using JavaScript. No data is stored or transmitted back to the server. This ensures the privacy and security of your information.</p>
+    <form>
+        <label for="loanAmount">Loan Amount:</label>
+        <input type="number" id="loanAmount" required><br>
+
+        <label for="interestRate">Interest Rate (%):</label>
+        <input type="number" id="interestRate" required><br>
+
+        <label for="loanTerm">Loan Term (years):</label>
+        <input type="number" id="loanTerm" required><br>
+
+        <button type="button" onclick="calculateMortgage()">Calculate</button>
+    </form>
+
+    <h2>Result:</h2>
+    <p>Monthly Payment: $<span id="monthlyPayment"></span></p>
+    <p>Total Payment: $<span id="totalPayment"></span></p>
+    <p>Total Interest: $<span id="totalInterest"></span></p>
+    <script>
+        const date = new Date(document.lastModified);
+        document.getElementById("demo").innerHTML = date;
+        // Fetch IP information using an API
+        fetch('https://ipapi.co/json/')
+            .then(response => response.json())
+            .then(data => {
+                const region = data.region;
+                const ipAddress = data.ip;
+                document.getElementById("demo").innerHTML += `<p>Your browser Region: ${region}</p>`;
+                document.getElementById("demo").innerHTML += `<p>Your browser IP Address: ${ipAddress}</p>`;
+                const isJavascriptBlocked = !document.getElementById("demo");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    </script>
+    <script>
+        const lastModified = new Date(document.lastModified);
+        document.getElementById("lastModified").innerHTML = "Page last edited: " + lastModified;
+    </script><br>
+    <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="inputdrive22" data-color="#5F7FFF" data-emoji="😉"  data-font="Bree" data-text="Buy me a coffee OR tea?" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
+    <a href="/index.html">Go to Home page</a><br>  
+</body>
+</html>
