@@ -23,3 +23,34 @@ build/
 # Python (if used)
 __pycache__/
 *.pyc
+
+# Common secret / credential files (do NOT commit keys or credentials)
+*.key
+*.pem
+*.p12
+*.jks
+*.crt
+*.der
+secrets.*
+credentials.*
+.netrc
+.htpasswd
+.aws/
+.azure/
+.gcloud/
+google-credentials.json
+service-account.json
+
+# Test / coverage outputs
+.pytest_cache/
+coverage/
+nunit-*.xml
+
+# Editor/session history
+.history/
+
+# Build / deployment system files
+.parcel-cache/
+.next/
+.vercel/
+.cache-loader
