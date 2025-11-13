@@ -83,3 +83,9 @@ h1, h2, h3, h4, h5, h6 {
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
+
+/* Error state for inline messages */
+.error {
+    color: var(--color-danger);
+    font-weight: 600;
+}
