@@ -22,6 +22,16 @@
   function fetchAndRenderIP(id) {
     var el = document.getElementById(id || 'demo');
     if (!el) return;
+
+    // Allow deployments to opt-out of external IP fetching for privacy
+    var disableViaBody = document.body && document.body.dataset && document.body.dataset.disableIpFetch === 'true';
+    var meta = document.querySelector('meta[name="disable-ip-fetch"]');
+    var disableViaMeta = meta && meta.getAttribute('content') === 'true';
+    if (disableViaBody || disableViaMeta) {
+      // explicit opt-out present; do not fetch
+      return;
+    }
+
     // Keep this call minimal and privacy-conscious: only show region and IP
     fetch('https://ipapi.co/json/')
       .then(function (r) { return r.json(); })
